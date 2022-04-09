@@ -14,12 +14,34 @@ var refresh = setInterval(function () {
 // Refresh the Time and Date. Get some autolocation?
 // API https://openweathermap.org/api/one-call-api
 
+var listHistory = document.getElementById('date-and-time');
 // Gets city info from API
-function getCityInfo (somevariable) {
+getCityInfo();
+function getCityInfo () {
     // city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
+    var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=6aadb479841729c992f0f24e1ecee7b6';
 
+
+    fetch(requestUrl)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        //looping over the fetch response and inserting the URL of your repos into a list
+        console.log(data);
+        for (var i = 0; i < data.length; i++) {
+          //Create a list element
+          var listItem = document.createElement('li');
+  
+          //Set the text of the list element to the JSON response's .html_url property
+          listItem.textContent = data[i].html_url;
+  
+          //Append the li element to the id associated with the ul element.
+          listHistory.appendChild(listItem);
+        }
+      });
     
-    return cityInfo;
+      return;
 }
 
 // Processes city info
@@ -80,7 +102,7 @@ function init () {
 
     // loads data from storage
     loadData();
-    
+
     // Displays list of data from storage
 
 

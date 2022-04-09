@@ -21,5 +21,7 @@ Obtained local storage and moment JS from my 05 Homework: https://github.com/Tim
 
 Development Process (See commits for more details):
 Wireframed page + Pseudocode
+HTML layout based on criteria
+JS function and testing with HMTL
 
 
