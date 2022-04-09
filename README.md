@@ -14,6 +14,7 @@ Link to Deployed Page:
 
 
 References:
-
+Obtained favicon images from: https://www.freeiconspng.com
 
 Development Process (See commits for more details):
+
