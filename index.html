@@ -6,22 +6,47 @@
         <link rel="stylesheet" src="./assets/css/style.css">
         <title>Weather App</title>
         <link rel="icon" type="image/x-icon" href="./assets/images/favicons/sun.ico" id="favicon">
+        
+        <!-- JS scripts: Moment, JQ -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
 
     <body>
         <header>
             <!-- Weather Dash board  -->
+            <h1>Welcome to your Weather DashBoard</h1>
             <!-- Include current date -->
+            <p id="date-and-time">Date and Time Place holder</p>
         </header>
 
+        <!-- City Search and Results -->
         <main>
             <!-- Need forms to input city -->
+            <form class="form">
+                <div class="form-group">
+                  <label for="citySearch">City Address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter city address...">
+                  <small id="emailHelp" class="form-text text-muted">Find your city, your results will be automatically saved on the right!</small>
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+              </form>
             <!-- Needs a space for where the city info will populate -->
-
-            <!-- History of searched cities -->
-            <!-- Create as an <aside>-->
+            <!-- Current Weather -->
+              <div id="weatherCurrent" class="resultBox"></div>
+              <!-- Forecast weather -->
+              <div id="weatherForecast" class="resultBox"></div>
         </main>
-        
+
+        <!-- History of searched cities -->
+        <aside class="side table">
+            <!-- List of locations -->
+            <ul class="list">List PlaceHolder</ul>
+                <li>PseudoList Item1</li>
+                <li>PseudoList Item2</li>
+                <li>PseudoList Item3</li>
+        </aside>
+
         <script src="./assets/js/script.js"></script>
     </body>
 
