@@ -15,12 +15,39 @@ var refresh = setInterval(function () {
 // API https://openweathermap.org/api/one-call-api
 
 var listHistory = document.getElementById('listHistory');
-// Gets city info from API
-getCityInfo();
-function getCityInfo () {
-    // city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-    var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=6aadb479841729c992f0f24e1ecee7b6';
+var openWeatherAPIKEY = '6aadb479841729c992f0f24e1ecee7b6';
 
+// Requests longitude and latitude from API using search criteria
+var cityLongitutde = 0; 
+var cityLatitude = 0;
+
+nameConverter ('Austin', 'TX', 'US');
+function nameConverter (cityName, cityState, cityCountry) {
+    // http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
+    var limit = 1;
+    var requestUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + cityName + ',' + cityState + ',' + cityCountry + '&limit=' + limit + '&appid=' + openWeatherAPIKEY;
+    console.log('this happened convert');
+    // Fetces lon and lat
+    fetch(requestUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+        //looping over the fetch response. For now the array is only 1 item, but can be scaled in the future.
+        // assigns the longitude and latitude for the city
+        for (var i = 0; i < data.length; i++) { 
+            cityLongitutde = data[i].lon;
+            cityLatitude = data[i].lat;
+        }
+        getCityInfoAPI();
+    });
+}
+
+// Requests city info from API using longitutde and latitude
+function getCityInfoAPI () {
+    // city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
+
+    var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + cityLatitude + '&lon=' + cityLongitutde + '&appid=' + openWeatherAPIKEY;
 
     fetch(requestUrl)
       .then(function (response) {
