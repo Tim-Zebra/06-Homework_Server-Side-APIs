@@ -14,7 +14,7 @@ var refresh = setInterval(function () {
 // Refresh the Time and Date. Get some autolocation?
 // API https://openweathermap.org/api/one-call-api
 
-var listHistory = document.getElementById('date-and-time');
+var listHistory = document.getElementById('listHistory');
 // Gets city info from API
 getCityInfo();
 function getCityInfo () {
@@ -28,20 +28,15 @@ function getCityInfo () {
       })
       .then(function (data) {
         //looping over the fetch response and inserting the URL of your repos into a list
-        console.log(data);
-        for (var i = 0; i < data.length; i++) {
-          //Create a list element
-          var listItem = document.createElement('li');
-  
+        console.log(data);  
+        var listItem = document.createElement('li');
+        
           //Set the text of the list element to the JSON response's .html_url property
-          listItem.textContent = data[i].html_url;
-  
+          listItem.textContent = data.timezone;
+            console.log(data.timezone);
           //Append the li element to the id associated with the ul element.
           listHistory.appendChild(listItem);
-        }
       });
-    
-      return;
 }
 
 // Processes city info
