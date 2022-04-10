@@ -137,25 +137,29 @@ function processCurrentWeather () {
 function processFutureWeather () {
 // Start loop at 1 because 0 is current forecast.
     for (var k = 1; k < 6; k++) {
+        // Creates day objects
+        var day = 'day' + k;
+        futureCityInfo[day] = {};
+
         // Converts unix date
         var date = new Date(rawCityInfo.daily[k].dt * 1000);
-        futureCityInfo.date = date;
+        futureCityInfo[day].date = date;
 
         // Icon image representing current weather. Uses API icon code
         var iconCode = rawCityInfo.current.weather[0].icon;
-        futureCityInfo.icon = 'http://openweathermap.org/img/w/' + iconCode + '.png';
+        futureCityInfo[day].icon = 'http://openweathermap.org/img/w/' + iconCode + '.png';
         
         // Converts Kelvin to Fahrenheit and converts to nearest whole integer
         var temp = rawCityInfo.current.temp;
-        futureCityInfo.temp = ((temp - 273.15) * (9 / 5) + 32).toFixed(0) + ' F';
+        futureCityInfo[day].temp = ((temp - 273.15) * (9 / 5) + 32).toFixed(0) + ' F';
     
         // Humidity
         var humidity = rawCityInfo.current.humidity;
-        futureCityInfo.humidity = humidity + '%';
+        futureCityInfo[day].humidity = humidity + '%';
     
         // Wind Speed in mph
         var wind = rawCityInfo.current.wind_speed;
-        futureCityInfo.wind = (wind * (3600 / 1609.34)).toFixed(0);;
+        futureCityInfo[day].wind = (wind * (3600 / 1609.34)).toFixed(0);;
     }
 
 console.log('future city info: ', futureCityInfo);
