@@ -80,8 +80,23 @@ function searchByHistory (event) {
         var cityState = element.getAttribute("data-state");
         var cityCountry = element.getAttribute("data-country");
 
-        renderAPI(cityName, cityState, cityCountry);
+        // Adds search history to list
+        var liEl = $("<li>" + cityName + "</li>");
+        liEl.attr('data-state', cityState);
+        liEl.attr('data-country', cityCountry);
+        listHistory.prepend(liEl);
 
+        // Saves history list
+        var search = {};
+        search.city = cityName;
+        search.state = cityState;
+        search.country = cityCountry;
+    
+        // Object saved into search history array
+        searchHistroyArray.unshift(search);
+        saveData ();
+
+        renderAPI(cityName, cityState, cityCountry);
     }
 }
 
