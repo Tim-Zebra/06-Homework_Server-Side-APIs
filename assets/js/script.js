@@ -178,7 +178,7 @@ function displayCityInfo () {
     displayFutureCityInfo();
 }
 
-// Display city info
+// Display current city info
 function displayCurrentCityInfo () {
     // Emptys all child elements
     currentWeatherEl.empty();
@@ -222,7 +222,22 @@ function displayCurrentCityInfo () {
     var tempEl = $('<div><h4>' + 'Temperature: ' + '</h4>' + '<p>' + temp + '</p></div>');
     var humidityEl = $('<div><h4>' + 'Humidity: ' + '</h4>' + '<p>' + humidity + '</p></div>');
     var windEl = $('<div><h4>' + 'Wind Speed: ' + '</h4>' + '<p>' + wind + '</p></div>');
-    var uvIndexEl = $('<div><h4>' + 'UV Index: ' + '</h4>' + '<p>' + uvIndex + '</p></div>');
+
+    // This element also needs additional paramenters
+    var uvClass = '';
+    var uvText = '';
+    if (uvIndex <= 2) {
+        uvClass = 'uv-low'
+        uvText = ' Low';
+    } else if (uvIndex <= 7) {
+        uvClass = 'uv-mod';
+        uvText = ' Moderate';
+    }
+    else {
+        uvClass = 'uv-high';
+        uvText = ' High';
+    }
+    var uvIndexEl = $('<div><h4>' + 'UV Index: ' + '</h4>' + '<p>' + uvIndex + '<span class="' + uvClass + '">' + uvText + '</span></p></div>');
 
     // Appends elements
     var elementArr = [cityNameEl, cityDateEl, iconEl];
@@ -239,6 +254,7 @@ function displayCurrentCityInfo () {
     currentWeatherEl.append(citySubEl);
 }
 
+// Display future city info
 function displayFutureCityInfo () {
     // Emptys all child elements
     futureWeatherEl.empty();
@@ -303,16 +319,17 @@ function displayFutureCityInfo () {
     
         futureWeatherEl.append(futureCityEl);
         }
-    }
-
-function uvIndex () {
-    // UV Index can be further extrapolated to:
-    // to be presented with a color that indicates whether the conditions are favorable, moderate, or severe
 }
 
+// Adds class to uvIndex range 
+function uvIndex (element, uvIndex) {
+    var range = element.children('span');
 
 
-// Processes city info
+    return element;
+}
+
+// Processes city weather
 function processCityWeather () {
     processCurrentWeather();
     processFutureWeather();
