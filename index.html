@@ -23,10 +23,13 @@
         <!-- City Search and Results -->
         <main>
             <!-- Need forms to input city -->
-            <form class="form">
+            <form class="form" id="weatherForm">
                 <div class="form-group">
                   <label for="citySearch">City Address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter city address...">
+                  <input type="text" class="form-control" id="cityInput" aria-describedby="emailHelp" placeholder="Enter city address...">
+                  <input type="text" class="form-control" id="stateInput" aria-describedby="emailHelp" placeholder="Enter city address...">
+                  <input type="text" class="form-control" id="countryInput" aria-describedby="emailHelp" placeholder="Enter city address...">
+
                   <small id="emailHelp" class="form-text text-muted">Find your city, your results will be automatically saved on the left!</small>
                 </div>
                 <button type="submit" class="btn btn-primary" id="citySearchButton">Search</button>

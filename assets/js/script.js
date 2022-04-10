@@ -14,7 +14,6 @@ var refresh = setInterval(function () {
 // Refresh the Time and Date. Get some autolocation?
 // API https://openweathermap.org/api/one-call-api
 var testing = document.getElementById('testing');
-var listHistory = document.getElementById('listHistory');
 var openWeatherAPIKEY = '6aadb479841729c992f0f24e1ecee7b6';
 var rawCityInfo = {};
 var currentCityInfo = {};
@@ -24,10 +23,36 @@ var futureCityInfo = {};
 var cityLongitutde = 0; 
 var cityLatitude = 0;
 
+
+var weatherFormEl = $('#weatherForm');
+var cityInputEl = $('#cityInput');
+var listHistory = $('#listHistory');
+
+// City is added to a search history array
+var searchHistroyArray = [];
+// Need to be saved locally
+// Cities in search history can be selected.
+// Once selected the same info can be viewed again.
+// Consider a delete button for search history
+// Get Data from user input. Save data from user input into search history
+function getUserInput (event) {
+    event.preventDefault();
+
+    searchHistroyArray.push(cityInputEl.val());
+
+    var liEl = $("<li>" + cityInputEl.val() + "</li>");
+    listHistory.append(liEl);
+    cityInputEl.val('');
+    console.log(searchHistroyArray);
+
+}
+
+
+
 // Render's API info - Forces async functions to sync *Must be labeled an a sync function with an async action such as fetch*
 async function renderAPI () {
     // Async functions
-    await nameConverter ('Austin', 'TX', 'US');
+    await nameConverter ('Georgia', 'TX', 'US');
     await getCityInfoAPI();
 
 
@@ -38,10 +63,10 @@ async function renderAPI () {
 
 }   
 
-var citySearchBtn = document.getElementById('citySearchButton');
+
 
 renderAPI();
-// citySearchBtn.addEventListener('click', function (event) {
+// weatherFormEl.on('click', getUserInput); {
 //     event.preventDefault();
 //     renderAPI();
 // });
@@ -49,8 +74,18 @@ renderAPI();
 
 async function nameConverter (cityName, cityState, cityCountry) {
     // http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
+    // creates the query string
+    var queryString = '';
+    queryString += (cityName + ',');
+    if (cityState !== null) {
+        queryString += (cityState + ',');
+    }
+    if (cityCountry !== null) {
+        queryString += (cityCountry);
+    }
+    console.log(queryString);
     var limit = 1;
-    var requestUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + cityName + ',' + cityState + ',' + cityCountry + '&limit=' + limit + '&appid=' + openWeatherAPIKEY;
+    var requestUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + queryString + '&limit=' + limit + '&appid=' + openWeatherAPIKEY;
     // Fetces lon and lat
     await fetch(requestUrl, {
         credentials: 'same-origin'
@@ -92,12 +127,8 @@ function uvIndex () {
     // UV Index can be further extrapolated to:
     // to be presented with a color that indicates whether the conditions are favorable, moderate, or severe
 }
-// City is added to a search history array
-var searchHistroyArray = [];
-// Need to be saved locally
-// Cities in search history can be selected.
-// Once selected the same info can be viewed again.
-// Consider a delete button for search history
+
+
 
 // Processes city info
 function processCityInfo () {
