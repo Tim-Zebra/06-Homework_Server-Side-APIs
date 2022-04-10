@@ -94,9 +94,15 @@ function searchByHistory (event) {
     
         // Object saved into search history array
         searchHistroyArray.unshift(search);
-        saveData ();
+        saveData();
 
         renderAPI(cityName, cityState, cityCountry);
+    }
+    // Clears search history list
+    if (element.matches('button') === true) {
+        searchHistroyArray = [];
+        listHistory.empty();
+        saveData();
     }
 }
 
