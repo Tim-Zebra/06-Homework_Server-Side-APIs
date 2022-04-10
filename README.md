@@ -17,8 +17,6 @@ References:
 Obtained favicon images from: https://www.freeiconspng.com
 Bootstrap form obtained from: https://getbootstrap.com/docs/4.0/components/forms/
 Obtained local storage and moment JS from my 05 Homework: https://github.com/Tim-Zebra/05-Homework_Third-Party-APIs
-Obtained sleeper function inspiration from user663031: https://stackoverflow.com/questions/38956121/how-to-add-delay-to-promise-inside-then
-
 
 Development Process (See commits for more details):
 Wireframed page + Pseudocode

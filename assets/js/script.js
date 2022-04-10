@@ -321,14 +321,6 @@ function displayFutureCityInfo () {
         }
 }
 
-// Adds class to uvIndex range 
-function uvIndex (element, uvIndex) {
-    var range = element.children('span');
-
-
-    return element;
-}
-
 // Processes city weather
 function processCityWeather () {
     processCurrentWeather();

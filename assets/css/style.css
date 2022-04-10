@@ -1,0 +1,37 @@
+header {
+    width: 100%;
+}
+
+main {
+    width: 75%;
+}
+
+/* Search Box */
+#searchHeader {
+    border-bottom:2px solid black;
+}
+
+#searchHeader button {
+    background-color: transparent;
+    border-radius: 10%;
+    border-style: solid;
+    border-color: rgb(243, 243, 243);
+    outline: none;
+    transition: 0.2s;
+}
+
+#searchHeader button:hover {
+    transform: rotate(90deg);
+    transition: .4s;
+    border-color: transparent;
+    border-radius: 80%;
+}
+
+#searchHeader button:active {
+    /* transform: rotate(0deg); */
+    transition: .1s;
+    border-color: transparent;
+    box-shadow: 0px 0px 10px red;
+}
+
+
