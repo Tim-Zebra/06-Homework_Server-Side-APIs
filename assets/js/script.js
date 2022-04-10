@@ -26,6 +26,8 @@ var cityLatitude = 0;
 
 var weatherFormEl = $('#weatherForm');
 var cityInputEl = $('#cityInput');
+var stateInputEl = $('#stateInput');
+var countryInputEl = $('#countryInput');
 var listHistory = $('#listHistory');
 
 // City is added to a search history array
@@ -38,21 +40,41 @@ var searchHistroyArray = [];
 function getUserInput (event) {
     event.preventDefault();
 
-    searchHistroyArray.push(cityInputEl.val());
+    var search = {};
+    // Catches if no city input, then do nothing
+    if (cityInputEl.val() !== '') {
+        // Stores user search as an object
+        search.city = cityInputEl.val();
+        search.state = stateInputEl.val();
+        search.country = countryInputEl.val();
+    
+        // Object saved into search history array
+        searchHistroyArray.unshift(search);
+    
+        var liEl = $("<li>" + search.city + "</li>");
+        liEl.attr('data-state', search.state);
+        liEl.attr('data-country', search.country);
+        listHistory.append(liEl);
 
-    var liEl = $("<li>" + cityInputEl.val() + "</li>");
-    listHistory.append(liEl);
+        console.log(searchHistroyArray);
+        renderAPI (search.city, search.state, search.country);
+    }
+
     cityInputEl.val('');
-    console.log(searchHistroyArray);
+    stateInputEl.val('');
+    countryInputEl.val('');
+
 
 }
 
+weatherFormEl.on('submit', getUserInput);
 
+// Get Data from Search History
 
 // Render's API info - Forces async functions to sync *Must be labeled an a sync function with an async action such as fetch*
-async function renderAPI () {
+async function renderAPI (cityName, cityState, cityCountry) {
     // Async functions
-    await nameConverter ('Georgia', 'TX', 'US');
+    await nameConverter (cityName, cityState, cityCountry);
     await getCityInfoAPI();
 
 
@@ -63,29 +85,21 @@ async function renderAPI () {
 
 }   
 
-
-
-renderAPI();
-// weatherFormEl.on('click', getUserInput); {
-//     event.preventDefault();
-//     renderAPI();
-// });
-
-
 async function nameConverter (cityName, cityState, cityCountry) {
     // http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
     // creates the query string
     var queryString = '';
-    queryString += (cityName + ',');
-    if (cityState !== null) {
-        queryString += (cityState + ',');
+    queryString += (cityName);
+    if (cityState !== '') {
+        queryString += (',' + cityState);
     }
-    if (cityCountry !== null) {
-        queryString += (cityCountry);
+    if (cityCountry !== '') {
+        queryString += (',' + cityCountry);
     }
-    console.log(queryString);
+
     var limit = 1;
     var requestUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + queryString + '&limit=' + limit + '&appid=' + openWeatherAPIKEY;
+    console.log(requestUrl);
     // Fetces lon and lat
     await fetch(requestUrl, {
         credentials: 'same-origin'
