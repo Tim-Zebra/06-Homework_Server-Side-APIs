@@ -23,7 +23,7 @@ var futureCityInfo = {};
 var cityLongitutde = 0; 
 var cityLatitude = 0;
 
-
+var aside = $('aside');
 var weatherFormEl = $('#weatherForm');
 var cityInputEl = $('#cityInput');
 var stateInputEl = $('#stateInput');
@@ -72,7 +72,20 @@ function getUserInput (event) {
 weatherFormEl.on('submit', getUserInput);
 
 // Get Data from Search History Li Element
+function searchByHistory (event) {
+    event.preventDefault();
+    var element = event.target;
+    if (element.matches("li") === true) {
+        var cityName = element.textContent;
+        var cityState = element.getAttribute("data-state");
+        var cityCountry = element.getAttribute("data-country");
 
+        renderAPI(cityName, cityState, cityCountry);
+
+    }
+}
+
+aside.on("click", searchByHistory);
 // Render's API info - Forces async functions to sync *Must be labeled an a sync function with an async action such as fetch*
 async function renderAPI (cityName, cityState, cityCountry) {
     // Async functions
@@ -84,8 +97,6 @@ async function renderAPI (cityName, cityState, cityCountry) {
     processCurrentWeather();
     processFutureWeather();
     console.log('Raw info: ', rawCityInfo);
-    displaySearchHistory();
-
 }   
 
 async function nameConverter (cityName, cityState, cityCountry) {
@@ -230,7 +241,12 @@ function loadData () {
 
 // Displays search history
 function displaySearchHistory () {
-
+    for (var k = 0; k < searchHistroyArray.length; k++) {
+        var liEl = $("<li>" + searchHistroyArray[k].city + "</li>");
+        liEl.attr('data-state', searchHistroyArray[k].state);
+        liEl.attr('data-country', searchHistroyArray[k].country);
+        listHistory.append(liEl);
+    }
 }
 
 // Initiates base app
@@ -243,6 +259,5 @@ function init () {
 
     // Displays list of data from storage
     displaySearchHistory();
-
 }
 init();
