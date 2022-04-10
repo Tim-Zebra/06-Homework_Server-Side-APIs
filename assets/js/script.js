@@ -42,12 +42,17 @@ function getUserInput (event) {
     // Catches if no city input, then do nothing
     if (cityInputEl.val() !== '') {
         // Stores user search as an object
-        search.city = cityInputEl.val();
-        search.state = stateInputEl.val();
-        search.country = countryInputEl.val();
-        
+        search.city = cityInputEl.val().toLowerCase();
+        search.state = stateInputEl.val().toUpperCase();
+        search.country = countryInputEl.val().toUpperCase();
+
+        // Capitalizes first letter of city
+        var arr = search.city.split('');
+        arr[0] = arr[0].toUpperCase();
+        search.city = arr.join('');
+
         // Sets global city name;
-        currentCityName= cityInputEl.val();
+        currentCityName = search.city;
 
         // Object saved into search history array
         searchHistroyArray.unshift(search);
@@ -62,12 +67,9 @@ function getUserInput (event) {
         console.log(searchHistroyArray);
         renderAPI (search.city, search.state, search.country);
     }
-
     cityInputEl.val('');
     stateInputEl.val('');
     countryInputEl.val('');
-
-
 }
 
 weatherFormEl.on('submit', getUserInput);
@@ -119,7 +121,7 @@ async function renderAPI (cityName, cityState, cityCountry) {
 
     // Then these functions that need to sync occur.
     processCityWeather();
-    displayCityInfo();
+    displayCurrentCityInfo();
     console.log('Raw info: ', rawCityInfo);
 }   
 
@@ -171,7 +173,7 @@ async function getCityInfoAPI () {
 }
 
 // Display city info
-function displayCityInfo () {
+function displayCurrentCityInfo () {
 // City result displays current and future conditions
     // Emptys all child elements
     currentWeatherEl.empty();
