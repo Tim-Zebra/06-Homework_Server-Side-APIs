@@ -18,6 +18,7 @@ var openWeatherAPIKEY = '6aadb479841729c992f0f24e1ecee7b6';
 var rawCityInfo = {};
 var currentCityInfo = {};
 var futureCityInfo = {};
+var searchHistroyArray = [];
 
 // Requests longitude and latitude from API using search criteria
 var cityLongitutde = 0; 
@@ -29,13 +30,10 @@ var cityInputEl = $('#cityInput');
 var stateInputEl = $('#stateInput');
 var countryInputEl = $('#countryInput');
 var listHistory = $('#listHistory');
+var currentWeatherEl = $('#weatherCurrent');
+var futureWeatherEl = $('#weatherFuture');
+var currentCityName = '';
 
-// City is added to a search history array
-var searchHistroyArray = [];
-// Need to be saved locally
-// Cities in search history can be selected.
-// Once selected the same info can be viewed again.
-// Consider a delete button for search history
 // Get Data from user input. Save data from user input into search history
 function getUserInput (event) {
     event.preventDefault();
@@ -47,7 +45,10 @@ function getUserInput (event) {
         search.city = cityInputEl.val();
         search.state = stateInputEl.val();
         search.country = countryInputEl.val();
-    
+        
+        // Sets global city name;
+        currentCityName= cityInputEl.val();
+
         // Object saved into search history array
         searchHistroyArray.unshift(search);
         saveData ();
@@ -79,6 +80,9 @@ function searchByHistory (event) {
         var cityName = element.textContent;
         var cityState = element.getAttribute("data-state");
         var cityCountry = element.getAttribute("data-country");
+
+        // Sets global variable of current city
+        currentCityName = element.textContent;
 
         // Adds search history to list
         var liEl = $("<li>" + cityName + "</li>");
@@ -113,10 +117,9 @@ async function renderAPI (cityName, cityState, cityCountry) {
     await nameConverter (cityName, cityState, cityCountry);
     await getCityInfoAPI();
 
-
     // Then these functions that need to sync occur.
-    processCurrentWeather();
-    processFutureWeather();
+    processCityWeather();
+    displayCityInfo();
     console.log('Raw info: ', rawCityInfo);
 }   
 
@@ -170,6 +173,34 @@ async function getCityInfoAPI () {
 // Display city info
 function displayCityInfo () {
 // City result displays current and future conditions
+    // Emptys all child elements
+    currentWeatherEl.empty();
+
+    // Obtains currentCity object values
+    var cityName = currentCityName;
+    var cityDate = currentCityInfo.date;
+    var icon = currentCityInfo.icon;
+    var temp = currentCityInfo.temp;
+    var humidity = currentCityInfo.humidity;
+    var wind = currentCityInfo.wind;
+    var uvIndex = currentCityInfo.uv;
+
+    // Creates elements based off values
+    var cityNameEl = $('<div>' + cityName + '</div>');
+    var cityDateEl = $('<div>' + cityDate + '</div>');
+    var iconEl = $('<div>' + icon + '</div>');
+    var tempEl = $('<div>' + temp + '</div>');
+    var humidityEl = $('<div>' + humidity + '</div>');
+    var windEl = $('<div>' + wind + '</div>');
+    var uvIndexEl = $('<div>' + uvIndex + '</div>');
+
+    // Appends elements
+    var elementArr = [cityNameEl, cityDateEl, iconEl, tempEl, humidityEl, windEl, uvIndexEl];
+    for (var i = 0; i < elementArr.length; i++) {
+        currentWeatherEl.append(elementArr[i]);
+    }
+
+
 
 }
 function uvIndex () {
@@ -180,7 +211,7 @@ function uvIndex () {
 
 
 // Processes city info
-function processCityInfo () {
+function processCityWeather () {
     processCurrentWeather();
     processFutureWeather();
 }
@@ -197,7 +228,7 @@ function processCurrentWeather () {
     
     // Converts Kelvin to Fahrenheit and converts to nearest whole integer
     var temp = rawCityInfo.current.temp;
-    currentCityInfo.temp = ((temp - 273.15) * (9 / 5) + 32).toFixed(0) + ' F';
+    currentCityInfo.temp = ((temp - 273.15) * (9 / 5) + 32).toFixed(0) + '\u00B0 F';
 
     // Humidity
     var humidity = rawCityInfo.current.humidity;
@@ -231,7 +262,7 @@ function processFutureWeather () {
         
         // Converts Kelvin to Fahrenheit and converts to nearest whole integer
         var temp = rawCityInfo.current.temp;
-        futureCityInfo[day].temp = ((temp - 273.15) * (9 / 5) + 32).toFixed(0) + ' F';
+        futureCityInfo[day].temp = ((temp - 273.15) * (9 / 5) + 32).toFixed(0) + '\u00B0 F';
     
         // Humidity
         var humidity = rawCityInfo.current.humidity;
