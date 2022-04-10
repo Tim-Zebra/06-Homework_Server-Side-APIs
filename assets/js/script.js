@@ -50,11 +50,13 @@ function getUserInput (event) {
     
         // Object saved into search history array
         searchHistroyArray.unshift(search);
-    
+        saveData ();
+
+        // Search rendered into Li
         var liEl = $("<li>" + search.city + "</li>");
         liEl.attr('data-state', search.state);
         liEl.attr('data-country', search.country);
-        listHistory.append(liEl);
+        listHistory.prepend(liEl);
 
         console.log(searchHistroyArray);
         renderAPI (search.city, search.state, search.country);
@@ -69,7 +71,7 @@ function getUserInput (event) {
 
 weatherFormEl.on('submit', getUserInput);
 
-// Get Data from Search History
+// Get Data from Search History Li Element
 
 // Render's API info - Forces async functions to sync *Must be labeled an a sync function with an async action such as fetch*
 async function renderAPI (cityName, cityState, cityCountry) {
@@ -82,6 +84,7 @@ async function renderAPI (cityName, cityState, cityCountry) {
     processCurrentWeather();
     processFutureWeather();
     console.log('Raw info: ', rawCityInfo);
+    displaySearchHistory();
 
 }   
 
@@ -221,8 +224,13 @@ function loadData () {
     // Stores new data into the object
     var storedCityData = JSON.parse(localStorage.getItem("citySearches"));
     if (storedCityData !== null) {
-        searchHistroyArray = storedEventData;
+        searchHistroyArray = storedCityData;
     }
+}
+
+// Displays search history
+function displaySearchHistory () {
+
 }
 
 // Initiates base app
@@ -234,7 +242,7 @@ function init () {
     loadData();
 
     // Displays list of data from storage
-
+    displaySearchHistory();
 
 }
 init();
