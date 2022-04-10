@@ -29,13 +29,15 @@
                   <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter city address...">
                   <small id="emailHelp" class="form-text text-muted">Find your city, your results will be automatically saved on the left!</small>
                 </div>
-                <button type="submit" class="btn btn-primary">Search</button>
+                <button type="submit" class="btn btn-primary" id="citySearchButton">Search</button>
               </form>
             <!-- Needs a space for where the city info will populate -->
             <!-- Current Weather -->
-              <div id="weatherCurrent" class="resultBox"></div>
+              <section id="weatherCurrent" class="resultBox"></section>
+                <!-- display current city name and date -->
+                <div><img id="testing"></div>
               <!-- Forecast weather -->
-              <div id="weatherForecast" class="resultBox"></div>
+              <section id="weatherForecast" class="resultBox"></section>
         </main>
 
         <!-- History of searched cities -->
