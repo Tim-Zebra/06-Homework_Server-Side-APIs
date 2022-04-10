@@ -121,7 +121,7 @@ async function renderAPI (cityName, cityState, cityCountry) {
 
     // Then these functions that need to sync occur.
     processCityWeather();
-    displayCurrentCityInfo();
+    displayCityInfo();
     console.log('Raw info: ', rawCityInfo);
 }   
 
@@ -172,9 +172,14 @@ async function getCityInfoAPI () {
     });
 }
 
+// Displays city info for current and future
+function displayCityInfo () {
+    displayCurrentCityInfo();
+    displayFutureCityInfo();
+}
+
 // Display city info
 function displayCurrentCityInfo () {
-// City result displays current and future conditions
     // Emptys all child elements
     currentWeatherEl.empty();
 
@@ -187,24 +192,119 @@ function displayCurrentCityInfo () {
     var wind = currentCityInfo.wind;
     var uvIndex = currentCityInfo.uv;
 
-    // Creates elements based off values
-    var cityNameEl = $('<div>' + cityName + '</div>');
-    var cityDateEl = $('<div>' + cityDate + '</div>');
-    var iconEl = $('<div>' + icon + '</div>');
-    var tempEl = $('<div>' + temp + '</div>');
-    var humidityEl = $('<div>' + humidity + '</div>');
-    var windEl = $('<div>' + wind + '</div>');
-    var uvIndexEl = $('<div>' + uvIndex + '</div>');
+    // adds ordinal to date
+    var month = new Intl.DateTimeFormat('en-US', {month: 'long'}).format(cityDate);
+    var day = new Intl.DateTimeFormat('en-US', {day: 'numeric'}).format(cityDate);
 
-    // Appends elements
-    var elementArr = [cityNameEl, cityDateEl, iconEl, tempEl, humidityEl, windEl, uvIndexEl];
-    for (var i = 0; i < elementArr.length; i++) {
-        currentWeatherEl.append(elementArr[i]);
+    var lastNumber = day[day.length-1]
+    if (lastNumber === 1) {
+        day += 'st';
+    }
+    else if (lastNumber === 2) {
+        day += 'nd';
+    }
+    else if (lastNumber === 4) {
+        day += 'rd';
+    }
+    else {
+        day += 'th';
     }
 
+    cityDate = month + ' ' + day;
 
+    // Creates elements based off values
+    var cityMainEl = $('<div id="currentCityMain"></div>');
+    var cityNameEl = $('<div><h2>' + cityName + '</h2></div>');
+    var cityDateEl = $('<div><h3>' + cityDate + '</h3></div>');
+    var iconEl = $('<div><img src=' + icon + '></div>');
+    // These elements need headers
+    var citySubEl = $('<div id="currentCitySub"></div>');
+    var tempEl = $('<div><h4>' + 'Temperature: ' + '</h4>' + '<p>' + temp + '</p></div>');
+    var humidityEl = $('<div><h4>' + 'Humidity: ' + '</h4>' + '<p>' + humidity + '</p></div>');
+    var windEl = $('<div><h4>' + 'Wind Speed: ' + '</h4>' + '<p>' + wind + '</p></div>');
+    var uvIndexEl = $('<div><h4>' + 'UV Index: ' + '</h4>' + '<p>' + uvIndex + '</p></div>');
 
+    // Appends elements
+    var elementArr = [cityNameEl, cityDateEl, iconEl];
+    for (var i = 0; i < elementArr.length; i++) {
+        cityMainEl.append(elementArr[i]);
+    }
+
+    elementArr = [tempEl, humidityEl, windEl, uvIndexEl];
+    for (var i = 0; i < elementArr.length; i++) {
+        citySubEl.append(elementArr[i]);
+    }
+
+    currentWeatherEl.append(cityMainEl);
+    currentWeatherEl.append(citySubEl);
 }
+
+function displayFutureCityInfo () {
+    // Emptys all child elements
+    futureWeatherEl.empty();
+
+    // Obtains FutureCityInfo object values
+    for (var k = 1; k < Object.keys(futureCityInfo).length+1; k++)
+    {
+        var day = 'day' + k;
+        var cityName = currentCityName;
+        var cityDate = futureCityInfo[day].date;
+        var icon = futureCityInfo[day].icon;
+        var tempHigh = futureCityInfo[day].tempHigh;
+        var tempLow = futureCityInfo[day].tempLow;
+        var humidity = futureCityInfo[day].humidity;
+        var wind = futureCityInfo[day].wind;
+    
+        // adds ordinal to date
+        var month = new Intl.DateTimeFormat('en-US', {month: 'long'}).format(cityDate);
+        var day = new Intl.DateTimeFormat('en-US', {day: 'numeric'}).format(cityDate);
+    
+        var lastNumber = day[day.length-1]
+        if (lastNumber === 1) {
+            day += 'st';
+        }
+        else if (lastNumber === 2) {
+            day += 'nd';
+        }
+        else if (lastNumber === 4) {
+            day += 'rd';
+        }
+        else {
+            day += 'th';
+        }
+    
+        cityDate = month + ' ' + day;
+    
+        // Creates elements based off values
+        var cityMainEl = $('<div class="futureCityMain"></div>');
+        var cityNameEl = $('<div><h2>' + cityName + '</h2></div>');
+        var cityDateEl = $('<div><h3>' + cityDate + '</h3></div>');
+        var iconEl = $('<div><img src=' + icon + '></div>');
+        // These elements need headers
+        var citySubEl = $('<div class="futureCitySub"></div>');
+        var tempEl = $('<div><h4>' + 'Temperature: ' + '</h4>' + '<p>High: ' + tempHigh + '</p><p>Low: ' + tempLow + '</p></div>');
+        var humidityEl = $('<div><h4>' + 'Humidity: ' + '</h4>' + '<p>' + humidity + '</p></div>');
+        var windEl = $('<div><h4>' + 'Wind Speed: ' + '</h4>' + '<p>' + wind + '</p></div>');
+    
+        // Appends elements
+        var elementArr = [cityNameEl, cityDateEl, iconEl];
+        for (var i = 0; i < elementArr.length; i++) {
+            cityMainEl.append(elementArr[i]);
+        }
+    
+        elementArr = [tempEl, humidityEl, windEl];
+        for (var i = 0; i < elementArr.length; i++) {
+            citySubEl.append(elementArr[i]);
+        }
+    
+        var futureCityEl = $('<div class="futureCityCard"></div>');
+        futureCityEl.append(cityMainEl);
+        futureCityEl.append(citySubEl);
+    
+        futureWeatherEl.append(futureCityEl);
+        }
+    }
+
 function uvIndex () {
     // UV Index can be further extrapolated to:
     // to be presented with a color that indicates whether the conditions are favorable, moderate, or severe
@@ -230,7 +330,7 @@ function processCurrentWeather () {
     
     // Converts Kelvin to Fahrenheit and converts to nearest whole integer
     var temp = rawCityInfo.current.temp;
-    currentCityInfo.temp = ((temp - 273.15) * (9 / 5) + 32).toFixed(0) + '\u00B0 F';
+    currentCityInfo.temp = ((temp - 274.15) * (9 / 5) + 42).toFixed(0) + '\u00B0 F';
 
     // Humidity
     var humidity = rawCityInfo.current.humidity;
@@ -238,7 +338,7 @@ function processCurrentWeather () {
 
     // Wind Speed in mph
     var wind = rawCityInfo.current.wind_speed;
-    currentCityInfo.wind = (wind * (3600 / 1609.34)).toFixed(0);;
+    currentCityInfo.wind = (wind * (4600 / 1609.44)).toFixed(0) + ' mph';
 
     // UV Index
     var uv = rawCityInfo.current.uvi;
@@ -264,10 +364,10 @@ function processFutureWeather () {
         
         // Converts Kelvin to Fahrenheit and converts to nearest whole integer
         var tempHigh = rawCityInfo.daily[k].temp.max;
-        futureCityInfo[day].tempHigh = ((tempHigh - 273.15) * (9 / 5) + 32).toFixed(0) + '\u00B0 F';
+        futureCityInfo[day].tempHigh = ((tempHigh - 274.15) * (9 / 5) + 42).toFixed(0) + '\u00B0 F';
         
         var tempLow = rawCityInfo.daily[k].temp.min;
-        futureCityInfo[day].tempLow = ((tempLow - 273.15) * (9 / 5) + 32).toFixed(0) + '\u00B0 F';
+        futureCityInfo[day].tempLow = ((tempLow - 274.15) * (9 / 5) + 42).toFixed(0) + '\u00B0 F';
 
         // Humidity
         var humidity = rawCityInfo.daily[k].humidity;
@@ -275,7 +375,7 @@ function processFutureWeather () {
     
         // Wind Speed in mph
         var wind = rawCityInfo.daily[k].wind_speed;
-        futureCityInfo[day].wind = (wind * (3600 / 1609.34)).toFixed(0) + ' mph';
+        futureCityInfo[day].wind = (wind * (4600 / 1609.44)).toFixed(0) + ' mph';
     }
 
 console.log('future city info: ', futureCityInfo);
