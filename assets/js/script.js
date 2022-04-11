@@ -122,6 +122,8 @@ async function renderAPI (cityName, cityState, cityCountry) {
     // Then these functions that need to sync occur.
     processCityWeather();
     displayCityInfo();
+    currentWeatherEl.removeClass('hidden');
+    futureWeatherEl.removeClass('hidden');
     console.log('Raw info: ', rawCityInfo);
 }   
 
@@ -428,5 +430,7 @@ function init () {
 
     // Displays list of data from storage
     displaySearchHistory();
+
+
 }
 init();
