@@ -112,6 +112,7 @@ function searchByHistory (event) {
     }
 }
 
+renderAPI();
 aside.on("click", searchByHistory);
 // Render's API info - Forces async functions to sync *Must be labeled an a sync function with an async action such as fetch*
 async function renderAPI (cityName, cityState, cityCountry) {

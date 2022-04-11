@@ -21,12 +21,12 @@
         </header>
 
         <!-- City search and results -->
-        <main class="row mx-5 justify-content-between">
-          <section class="col-6">
+        <main class="row justify-content-around ml-1">
+          <section class="col-8 mt-2">
             <!-- Input city information form -->
             <form class="form" id="weatherForm">
                 <div class="form-group">
-                  <label for="citySearch">City Address</label>
+                  <h3 for="citySearch">City Address</h3>
                   <input type="text" class="form-control" id="cityInput" aria-describedby="emailHelp" placeholder="Enter city name...">
                   <input type="text" class="form-control" id="stateInput" aria-describedby="emailHelp" placeholder="Enter state (if applicable)...">
                   <input type="text" class="form-control" id="countryInput" aria-describedby="emailHelp" placeholder="Enter country...">
@@ -36,24 +36,23 @@
             </form>
 
             <!-- Current weather -->
-            <section id="weatherCurrent" class="resultBox"></section>
+            <section id="weatherCurrent" class="resultBox row"></section>
 
             <!-- Forecast weather -->
-            <section id="weatherFuture" class="resultBox"></section>
+            <section id="weatherFuture" class="resultBox row"></section>
           </section>
 
 
         
             <!-- History of searched cities -->
-          <aside class="col-4">
-            <div class="my-5 pb-3 d-flex justify-content-between" id="searchHeader">
-              <h3 class="ml-2">Search History</h3>
-              <button class="mr-2">&#10060;</button>
+          <aside class="col-3">
+            <div class="mb-3 pb-2 d-flex justify-content-start" id="searchHeader">
+              <h4 class="ml-2">Search History</h4>
+              <button class="ml-2">&#10060;</button>
             </div>
 
-            
             <!-- List of locations -->
-            <ul id="listHistory" class="col-12"></ul>
+            <ul id="listHistory" class=""></ul>
           </aside>
         </main>
 

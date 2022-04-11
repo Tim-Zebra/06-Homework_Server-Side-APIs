@@ -1,9 +1,19 @@
 header {
     width: 100%;
+    border-bottom: 5px solid rgb(241, 202, 72);
+    border-radius: 90%;
 }
 
 main {
-    width: 75%;
+    width: 100%;
+}
+
+aside {
+    border-left: 1px solid black;
+}
+
+aside ul > li {
+    text-indent: 40px;
 }
 
 /* Search Box */
@@ -11,6 +21,7 @@ main {
     border-bottom:2px solid black;
 }
 
+/* Search Box - button */
 #searchHeader button {
     background-color: transparent;
     border-radius: 10%;
@@ -28,10 +39,28 @@ main {
 }
 
 #searchHeader button:active {
-    /* transform: rotate(0deg); */
     transition: .1s;
     border-color: transparent;
     box-shadow: 0px 0px 10px red;
 }
 
+/* Search Box - List */
+#listHistory {
+    list-style-type: none;
+    font-size: 130%;
+    padding-left: 0;
+    line-height: 1.8;
+}
 
+/* UV output */
+.uv-low {
+    color: rgb(63, 209, 63)
+}
+
+.uv-mod {
+    color: rgb(216, 154, 38);
+}
+
+.uv-high {
+    color: rgb(202, 9, 9);
+}
