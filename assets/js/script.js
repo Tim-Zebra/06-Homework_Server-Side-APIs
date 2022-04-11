@@ -112,7 +112,6 @@ function searchByHistory (event) {
     }
 }
 
-renderAPI();
 aside.on("click", searchByHistory);
 // Render's API info - Forces async functions to sync *Must be labeled an a sync function with an async action such as fetch*
 async function renderAPI (cityName, cityState, cityCountry) {
@@ -183,7 +182,8 @@ function displayCityInfo () {
 function displayCurrentCityInfo () {
     // Emptys all child elements
     currentWeatherEl.empty();
-
+    // Creates a header
+    currentWeatherEl.append('<h2 class="col-12" id="currentWeatherHeader">Current Weather</h2>');
     // Obtains currentCity object values
     var cityName = currentCityName;
     var cityDate = currentCityInfo.date;
@@ -214,15 +214,15 @@ function displayCurrentCityInfo () {
     cityDate = month + ' ' + day;
 
     // Creates elements based off values
-    var cityMainEl = $('<div id="currentCityMain" class="col-12"><h2>Current Weather</h2></div>');
-    var cityNameEl = $('<div><h2>' + cityName + '</h2></div>');
-    var cityDateEl = $('<div><h3>' + cityDate + '</h3></div>');
-    var iconEl = $('<div><img src=' + icon + '></div>');
+    var cityMainEl = $('<div id="currentCityMain" class="row"></div>');
+    var cityNameEl = $('<div class=""><h1 id="currentCityHeader">' + cityName + '</h1></div>');
+    var cityDateEl = $('<div class=""><h2>' + cityDate + '</h2></div>');
+    var iconEl = $('<div class=""><img src=' + icon + '></div>');
     // These elements need headers
     var citySubEl = $('<div id="currentCitySub" class="row"></div>');
-    var tempEl = $('<div class="col-3"><h4>' + 'Temperature: ' + '</h4>' + '<p>' + temp + '</p></div>');
-    var humidityEl = $('<div class="col-3"><h4>' + 'Humidity: ' + '</h4>' + '<p>' + humidity + '</p></div>');
-    var windEl = $('<div class="col-3"><h4>' + 'Wind Speed: ' + '</h4>' + '<p>' + wind + '</p></div>');
+    var tempEl = $('<div class=""><h4>' + 'Temperature: ' + '</h4>' + '<p>' + temp + '</p></div>');
+    var humidityEl = $('<div class=""><h4>' + 'Humidity: ' + '</h4>' + '<p>' + humidity + '</p></div>');
+    var windEl = $('<div class=""><h4>' + 'Wind Speed: ' + '</h4>' + '<p>' + wind + '</p></div>');
 
     // This element also needs additional paramenters
     var uvClass = '';
@@ -238,10 +238,10 @@ function displayCurrentCityInfo () {
         uvClass = 'uv-high';
         uvText = ' High';
     }
-    var uvIndexEl = $('<div class="col-3"><h4>' + 'UV Index: ' + '</h4>' + '<p>' + uvIndex + '<span class="' + uvClass + '">' + uvText + '</span></p></div>');
+    var uvIndexEl = $('<div class=""><h4>' + 'UV Index: ' + '</h4>' + '<p>' + uvIndex + '<span class="' + uvClass + '">' + uvText + '</span></p></div>');
 
     // Appends elements
-    var elementArr = [cityNameEl, cityDateEl, iconEl];
+    var elementArr = [cityNameEl, iconEl, cityDateEl];
     for (var i = 0; i < elementArr.length; i++) {
         cityMainEl.append(elementArr[i]);
     }
@@ -260,6 +260,8 @@ function displayFutureCityInfo () {
     // Emptys all child elements
     futureWeatherEl.empty();
 
+    // Creates a header
+    futureWeatherEl.append('<h2 id="futureWeatherHeader" class="col-12">5-Day Forecast</h2>');
     // Obtains FutureCityInfo object values
     for (var k = 1; k < Object.keys(futureCityInfo).length+1; k++)
     {
@@ -300,8 +302,8 @@ function displayFutureCityInfo () {
         // These elements need headers
         var citySubEl = $('<div class="futureCitySub"></div>');
         var tempEl = $('<div><h4>' + 'Temperature: ' + '</h4>' + '<p>High: ' + tempHigh + '</p><p>Low: ' + tempLow + '</p></div>');
-        var humidityEl = $('<div><h4>' + 'Humidity: ' + '</h4>' + '<p>' + humidity + '</p></div>');
-        var windEl = $('<div><h4>' + 'Wind Speed: ' + '</h4>' + '<p>' + wind + '</p></div>');
+        var humidityEl = $('<div><h5>' + 'Humidity: ' + '</h5>' + '<p>' + humidity + '</p></div>');
+        var windEl = $('<div><h5>' + 'Wind Speed: ' + '</h5>' + '<p>' + wind + '</p></div>');
     
         // Appends elements
         var elementArr = [cityNameEl, cityDateEl, iconEl];

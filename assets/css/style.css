@@ -33,16 +33,53 @@ aside ul > li {
 /* Current Weather - Box */
 #weatherCurrent {
     border: 5px solid black;
-    margin-top:5px;
+    margin-top:20px;
     border-radius: 20px;
+    background-color: aliceblue;
+}
+
+#currentWeatherHeader {
+    padding-top:20px;
+    text-align: center;
+    border-bottom: 2px solid black;
+    padding-bottom: 20px;
+}
+
+#currentCityHeader {
+    text-align: right;
 }
 
 #currentCityMain {
+    justify-content: space-around;
+    width:100%;
+}
 
+#currentCityMain div{
+    padding:20px;
+    text-align: center;
 }
 
 #currentCitySub {
-    
+    width:100%;
+    justify-content: space-around;
+    padding:5px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* Current Weather - Box */
+#weatherFuture {
+    border: 5px solid black;
+    border-radius: 20px;
+    background-color: aliceblue;
+    margin-top: 40px;
+}
+
+#futureWeatherHeader {
+    padding-top:20px;
+    text-align: center;
+    border-bottom: 2px solid black;
+    padding-bottom: 20px;
 }
 
 /* Search Box */
