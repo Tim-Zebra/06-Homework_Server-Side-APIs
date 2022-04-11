@@ -129,7 +129,7 @@ async function renderAPI (cityName, cityState, cityCountry) {
 }   
 
 async function nameConverter (cityName, cityState, cityCountry) {
-    // http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
+    // https://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
     // creates the query string
     var queryString = '';
     queryString += (cityName);
@@ -141,7 +141,7 @@ async function nameConverter (cityName, cityState, cityCountry) {
     }
 
     var limit = 1;
-    var requestUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + queryString + '&limit=' + limit + '&appid=' + openWeatherAPIKEY;
+    var requestUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + queryString + '&limit=' + limit + '&appid=' + openWeatherAPIKEY;
     console.log(requestUrl);
     // Fetces lon and lat
     await fetch(requestUrl, {
@@ -380,7 +380,7 @@ function processFutureWeather () {
         // Converts Kelvin to Fahrenheit and converts to nearest whole integer
         var tempHigh = rawCityInfo.daily[k].temp.max;
         futureCityInfo[day].tempHigh = ((tempHigh - 273.15) * (9 / 5) + 32).toFixed(0) + '\u00B0 F';
-        console.log(tempHigh);
+
         var tempLow = rawCityInfo.daily[k].temp.min;
         futureCityInfo[day].tempLow = ((tempLow - 273.15) * (9 / 5) + 32).toFixed(0) + '\u00B0 F';
 

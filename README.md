@@ -2,16 +2,17 @@
 UT Bootcamp Homework #6 weather dashboard
 
 Description:
-
+A pleasant weather dashboard that can be used to check the weather of a current city, as well as obtain a 5 day forecast. 
 
 How to Use:
-
+Enter in the city name.
+If you are able to enter in the State and/or Country that will help narrow your results
 
 Website Visual Demo(Gif/video):
 
 
 Link to Deployed Page:
-
+https://tim-zebra.github.io/06-Homework_Server-Side-APIs/
 
 References:
 Obtained favicon images from: https://www.freeiconspng.com
