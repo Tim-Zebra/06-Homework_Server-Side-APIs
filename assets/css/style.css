@@ -24,7 +24,14 @@ main {
 aside ul > li {
     text-indent: 40px;
 }
-
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
 /* Main Content Box*/
 #mainContent {
     padding-top: var(--topPadding)

@@ -6,7 +6,9 @@ A pleasant weather dashboard that can be used to check the weather of a current 
 
 How to Use:
 Enter in the city name.
-If you are able to enter in the State and/or Country that will help narrow your results
+(If you are able to also enter in the State and/or Country that will help increase the accuracy of your results)
+Click "Search" or press Enter.
+You may also click on your previous results to view a particular city again.
 
 Website Visual Demo(Gif/video):
 
@@ -19,11 +21,7 @@ Obtained favicon images from: https://www.freeiconspng.com
 Bootstrap form obtained from: https://getbootstrap.com/docs/4.0/components/forms/
 Obtained local storage and moment JS from my 05 Homework: https://github.com/Tim-Zebra/05-Homework_Third-Party-APIs
 
-
-
 Development Process (See commits for more details):
 Wireframed page + Pseudocode
 HTML layout based on criteria
 JS function and testing with HMTL
-
-
