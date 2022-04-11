@@ -123,6 +123,24 @@ aside ul > li {
     line-height: 1.8;
 }
 
+#listHistory li {
+    border-radius: 20px;
+    background-color: rgb(180, 180, 218);
+    margin-bottom: 10px;
+
+}
+
+#listHistory li:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 20px 2px rgb(0, 0, 27);
+    transition: 0.3s;
+    background-color: rgb(154, 154, 219);
+}
+
+#listHistory li:active{
+    transition: 0.3s;
+    background-color: transparent;
+}
 /* UV output */
 .uv-low {
     color: rgb(63, 209, 63)

@@ -8,7 +8,7 @@ function headerDate () {
 var refresh = setInterval(function () {
     // Refreshes header date
     headerDate();
-    }, 60000);
+}, 60000);
 
 
 // Refresh the Time and Date. Get some autolocation?
@@ -122,6 +122,7 @@ async function renderAPI (cityName, cityState, cityCountry) {
     // Then these functions that need to sync occur.
     processCityWeather();
     displayCityInfo();
+    // Unhides weather boxes
     currentWeatherEl.removeClass('hidden');
     futureWeatherEl.removeClass('hidden');
     console.log('Raw info: ', rawCityInfo);
@@ -430,7 +431,5 @@ function init () {
 
     // Displays list of data from storage
     displaySearchHistory();
-
-
 }
 init();
