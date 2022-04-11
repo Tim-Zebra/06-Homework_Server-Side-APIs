@@ -345,7 +345,7 @@ function processCurrentWeather () {
     
     // Converts Kelvin to Fahrenheit and converts to nearest whole integer
     var temp = rawCityInfo.current.temp;
-    currentCityInfo.temp = ((temp - 274.15) * (9 / 5) + 42).toFixed(0) + '\u00B0 F';
+    currentCityInfo.temp = ((temp - 273.15) * (9 / 5) + 32).toFixed(0) + '\u00B0 F';
 
     // Humidity
     var humidity = rawCityInfo.current.humidity;
@@ -379,10 +379,10 @@ function processFutureWeather () {
         
         // Converts Kelvin to Fahrenheit and converts to nearest whole integer
         var tempHigh = rawCityInfo.daily[k].temp.max;
-        futureCityInfo[day].tempHigh = ((tempHigh - 274.15) * (9 / 5) + 42).toFixed(0) + '\u00B0 F';
-        
+        futureCityInfo[day].tempHigh = ((tempHigh - 273.15) * (9 / 5) + 32).toFixed(0) + '\u00B0 F';
+        console.log(tempHigh);
         var tempLow = rawCityInfo.daily[k].temp.min;
-        futureCityInfo[day].tempLow = ((tempLow - 274.15) * (9 / 5) + 42).toFixed(0) + '\u00B0 F';
+        futureCityInfo[day].tempLow = ((tempLow - 273.15) * (9 / 5) + 32).toFixed(0) + '\u00B0 F';
 
         // Humidity
         var humidity = rawCityInfo.daily[k].humidity;
