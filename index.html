@@ -13,7 +13,7 @@
     </head>
 
     <body>
-        <header class="text-center my-5">
+        <header class="text-center">
             <!-- Weather Dash board  -->
             <h1>Welcome to your Weather DashBoard</h1>
             <!-- Include current date -->
@@ -22,7 +22,7 @@
 
         <!-- City search and results -->
         <main class="row justify-content-around ml-1">
-          <section class="col-8 mt-2">
+          <section id="mainContent" class="col-8 mt-2">
             <!-- Input city information form -->
             <form class="form" id="weatherForm">
                 <div class="form-group">
@@ -36,7 +36,7 @@
             </form>
 
             <!-- Current weather -->
-            <section id="weatherCurrent" class="resultBox row"></section>
+            <section id="weatherCurrent" class="resultBox row">weatherCurrent</section>
 
             <!-- Forecast weather -->
             <section id="weatherFuture" class="resultBox row"></section>
@@ -45,7 +45,7 @@
 
         
             <!-- History of searched cities -->
-          <aside class="col-3">
+          <aside class="col-3" id="searchBox">
             <div class="mb-3 pb-2 d-flex justify-content-start" id="searchHeader">
               <h4 class="ml-2">Search History</h4>
               <button class="ml-2">&#10060;</button>

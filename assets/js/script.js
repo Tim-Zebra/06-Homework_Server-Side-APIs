@@ -214,15 +214,15 @@ function displayCurrentCityInfo () {
     cityDate = month + ' ' + day;
 
     // Creates elements based off values
-    var cityMainEl = $('<div id="currentCityMain"></div>');
+    var cityMainEl = $('<div id="currentCityMain" class="col-12"><h2>Current Weather</h2></div>');
     var cityNameEl = $('<div><h2>' + cityName + '</h2></div>');
     var cityDateEl = $('<div><h3>' + cityDate + '</h3></div>');
     var iconEl = $('<div><img src=' + icon + '></div>');
     // These elements need headers
-    var citySubEl = $('<div id="currentCitySub"></div>');
-    var tempEl = $('<div><h4>' + 'Temperature: ' + '</h4>' + '<p>' + temp + '</p></div>');
-    var humidityEl = $('<div><h4>' + 'Humidity: ' + '</h4>' + '<p>' + humidity + '</p></div>');
-    var windEl = $('<div><h4>' + 'Wind Speed: ' + '</h4>' + '<p>' + wind + '</p></div>');
+    var citySubEl = $('<div id="currentCitySub" class="row"></div>');
+    var tempEl = $('<div class="col-3"><h4>' + 'Temperature: ' + '</h4>' + '<p>' + temp + '</p></div>');
+    var humidityEl = $('<div class="col-3"><h4>' + 'Humidity: ' + '</h4>' + '<p>' + humidity + '</p></div>');
+    var windEl = $('<div class="col-3"><h4>' + 'Wind Speed: ' + '</h4>' + '<p>' + wind + '</p></div>');
 
     // This element also needs additional paramenters
     var uvClass = '';
@@ -238,7 +238,7 @@ function displayCurrentCityInfo () {
         uvClass = 'uv-high';
         uvText = ' High';
     }
-    var uvIndexEl = $('<div><h4>' + 'UV Index: ' + '</h4>' + '<p>' + uvIndex + '<span class="' + uvClass + '">' + uvText + '</span></p></div>');
+    var uvIndexEl = $('<div class="col-3"><h4>' + 'UV Index: ' + '</h4>' + '<p>' + uvIndex + '<span class="' + uvClass + '">' + uvText + '</span></p></div>');
 
     // Appends elements
     var elementArr = [cityNameEl, cityDateEl, iconEl];

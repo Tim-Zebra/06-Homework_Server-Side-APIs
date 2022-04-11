@@ -1,22 +1,56 @@
+:root {
+    --topPadding: 50px;
+}
+
+body {
+    background-color: rgb(227, 248, 248);
+}
 header {
     width: 100%;
     border-bottom: 5px solid rgb(241, 202, 72);
-    border-radius: 90%;
+    border-radius: 0% 0% 90% 90%/ 0% 0% 90% 90%;
+    background-image: linear-gradient(
+        rgb(238, 192, 40) 0%,
+        rgb(236, 216, 147) 100%
+      );
+    padding-top: 40px;
 }
 
 main {
     width: 100%;
-}
-
-aside {
-    border-left: 1px solid black;
+    padding-top: 20px;
 }
 
 aside ul > li {
     text-indent: 40px;
 }
 
+/* Main Content Box*/
+#mainContent {
+    padding-top: var(--topPadding)
+}
+
+/* Current Weather - Box */
+#weatherCurrent {
+    border: 5px solid black;
+    margin-top:5px;
+    border-radius: 20px;
+}
+
+#currentCityMain {
+
+}
+
+#currentCitySub {
+    
+}
+
 /* Search Box */
+#searchBox {
+    background-color: rgba(69, 150, 187, 0.3);
+    padding-top: var(--topPadding);
+    border-radius: 20px;
+}
 #searchHeader {
     border-bottom:2px solid black;
 }
