@@ -13,7 +13,7 @@ You may also click on your previous results to view a particular city again.
 ## Website Visual Demo:
 ![Banner](./demos/demo-gif.gif) <br />
 ![Banner](./demos/clearSearchHistory.gif) <br />
-Link to full demo: https://drive.google.com/file/d/11SKNRHLyEEJyvUtkaRQ48qDNy2cJyWiv/view
+<a href="https://drive.google.com/file/d/11SKNRHLyEEJyvUtkaRQ48qDNy2cJyWiv/view">Video Demo</a>
 
 ## Link to Deployed Page:
 https://tim-zebra.github.io/06-Homework_Server-Side-APIs/
