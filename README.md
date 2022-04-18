@@ -16,7 +16,7 @@ You may also click on your previous results to view a particular city again.
 <a href="https://drive.google.com/file/d/11SKNRHLyEEJyvUtkaRQ48qDNy2cJyWiv/view">Video Demo</a>
 
 ## Link to Deployed Page:
-https://tim-zebra.github.io/06-Homework_Server-Side-APIs/
+https://tim-zebra.github.io/Whats-my-Weather/
 
 ## References:
 Obtained favicon images from: https://www.freeiconspng.com <br />
