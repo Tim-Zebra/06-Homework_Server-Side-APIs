@@ -1,66 +1,66 @@
 <!DOCTYPE html>
 <html lang="en-us">
 
-    <head>
-        <meta charset="UTF-8" />
+  <head>
+      <meta charset="UTF-8" />
 
-        <title>Weather App</title>
-        <link rel="icon" type="image/x-icon" href="./assets/images/favicons/sun.ico" id="favicon">
-        
-        <!-- CSS scripts: Bootstrap, custom-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="./assets/css/style.css">
-    </head>
+      <title>Weather App</title>
+      <link rel="icon" type="image/x-icon" href="./assets/images/favicons/sun.ico" id="favicon">
+      
+      <!-- CSS scripts: Bootstrap, custom-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="./assets/css/style.css">
+  </head>
 
-    <body>
-        <header class="text-center">
-            <!-- Weather Dash board  -->
-            <h1>Welcome to your Weather DashBoard</h1>
-            <!-- Include current date -->
-            <p id="date-and-time"></p>
-        </header>
+  <body>
+      <header class="text-center">
+          <!-- Weather Dash board  -->
+          <h1>Welcome to your Weather DashBoard</h1>
+          <!-- Include current date -->
+          <p id="date-and-time"></p>
+      </header>
 
-        <!-- City search and results -->
-        <main class="row justify-content-around ml-1">
-          <section id="mainContent" class="col-8 mt-2">
-            <!-- Input city information form -->
-            <form class="form" id="weatherForm">
-                <div class="form-group">
-                  <h3 for="citySearch">City Address</h3>
-                  <input type="text" class="form-control" id="cityInput" aria-describedby="emailHelp" placeholder="Enter city name...">
-                  <input type="text" class="form-control" id="stateInput" aria-describedby="emailHelp" placeholder="Enter state (if applicable)...">
-                  <input type="text" class="form-control" id="countryInput" aria-describedby="emailHelp" placeholder="Enter country...">
-                  <small id="emailHelp" class="form-text text-muted">Find your city, your results will be automatically saved on the right!</small>
-                </div>
-                <button type="submit" class="btn btn-primary" id="citySearchButton">Search</button>
-            </form>
+      <!-- City search and results -->
+      <main class="row justify-content-around ml-1">
+        <section id="mainContent" class="col-8 mt-2">
+          <!-- Input city information form -->
+          <form class="form" id="weatherForm">
+              <div class="form-group">
+                <h3 for="citySearch">City Address</h3>
+                <input type="text" class="form-control" id="cityInput" aria-describedby="emailHelp" placeholder="Enter city name...">
+                <input type="text" class="form-control" id="stateInput" aria-describedby="emailHelp" placeholder="Enter state (if applicable)...">
+                <input type="text" class="form-control" id="countryInput" aria-describedby="emailHelp" placeholder="Enter country...">
+                <small id="emailHelp" class="form-text text-muted">Find your city, your results will be automatically saved on the right!</small>
+              </div>
+              <button type="submit" class="btn btn-primary" id="citySearchButton">Search</button>
+          </form>
 
-            <!-- Current weather -->
-            <section id="weatherCurrent" class="hidden resultBox row justify-content-around"></section>
+          <!-- Current weather -->
+          <section id="weatherCurrent" class="hidden resultBox row justify-content-around"></section>
 
-            <!-- Forecast weather -->
-            <section id="weatherFuture" class="hidden resultBox row justify-content-around"></section>
-          </section>
+          <!-- Forecast weather -->
+          <section id="weatherFuture" class="hidden resultBox row justify-content-around"></section>
+        </section>
 
 
-        
-            <!-- History of searched cities -->
-          <aside class="col-3" id="searchBox">
-            <div class="mb-3 pb-2 d-flex justify-content-start" id="searchHeader">
-              <h4 class="ml-2">Search History</h4>
-              <button class="ml-2">&#10060;</button>
-            </div>
+      
+          <!-- History of searched cities -->
+        <aside class="col-3" id="searchBox">
+          <div class="mb-3 pb-2 d-flex justify-content-start" id="searchHeader">
+            <h4 class="ml-2">Search History</h4>
+            <button class="ml-2">&#10060;</button>
+          </div>
 
-            <!-- List of locations -->
-            <ul id="listHistory" class=""></ul>
-          </aside>
-        </main>
+          <!-- List of locations -->
+          <ul id="listHistory" class=""></ul>
+        </aside>
+      </main>
 
-        <footer>Created by Timothy Zalewski, 2022</footer>
-        <!-- JS scripts: Moment, JQ -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="./assets/js/script.js"></script>
-    </body>
+      <footer>Created by Timothy Zalewski, 2022</footer>
+      <!-- JS scripts: Moment, JQ -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="./assets/js/script.js"></script>
+  </body>
 
 </html>
